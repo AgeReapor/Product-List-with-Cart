@@ -1,10 +1,11 @@
 import "./App.css";
 import Footer from "./components/Footer";
+import Menu from "./components/Menu";
 
 function App() {
   return (
     <>
-      Hello World
+      <Menu />
       <Footer />
     </>
   );
