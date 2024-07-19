@@ -3,15 +3,15 @@ $tablet-breakpoint: 1024px;
 $desktop-breakpoint: 1440px;
 
 @mixin breakpoint($size) {
-  @if $point == "mobile" {
+  @if $size == "mobile" {
     @media screen and (max-width: $mobile-breakpoint) {
       @content;
     }
-  } @else if $point == "tablet" {
+  } @else if $size == "tablet" {
     @media screen and (max-width: $tablet-breakpoint) {
       @content;
     }
-  } @else if $point == "desktop" {
+  } @else if $size == "desktop" {
     @media screen and (max-width: $desktop-breakpoint) {
       @content;
     }

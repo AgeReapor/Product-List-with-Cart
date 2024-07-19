@@ -1,0 +1,31 @@
+@use "../globals.scss" as *;
+
+.menu-image {
+  .tablet,
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+
+  @include breakpoint(tablet) {
+    .desktop {
+      display: none;
+    }
+    .tablet {
+      display: block;
+    }
+  }
+
+  @include breakpoint(mobile) {
+    .desktop,
+    .tablet {
+      display: none;
+    }
+    .mobile {
+      display: block;
+    }
+  }
+}
