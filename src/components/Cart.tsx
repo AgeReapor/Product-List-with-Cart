@@ -1,3 +1,4 @@
+import "./Cart.scss";
 import { useEffect, useState } from "react";
 import { JSONItem } from "../utils/types";
 import CartItem from "./CartItem";

@@ -14,9 +14,9 @@ export default function Menu({
   listOfMenuItems,
 }: MenuProps) {
   return (
-    <>
+    <div className="menu">
       <h2>Desserts</h2>
-      <div className="menu">
+      <div className="menu-grid">
         {listOfMenuItems.map((menuItem) => (
           <MenuItem
             orderTracking={orderTracking}
@@ -26,6 +26,6 @@ export default function Menu({
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }

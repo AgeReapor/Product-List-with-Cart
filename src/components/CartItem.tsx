@@ -19,8 +19,7 @@ export default function CartItem({
         <span className="price">${price.toFixed(2)}</span>
         <span className="total">${(orderCount * price).toFixed(2)}</span>
         <button className="clear-order" onClick={() => updateOrderCount(0)}>
-          {" "}
-          x{" "}
+          x
         </button>
       </div>
     </div>
