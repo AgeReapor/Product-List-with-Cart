@@ -1,0 +1,16 @@
+@use "../globals.scss" as *;
+
+.menu {
+  // debug
+
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 1.5rem;
+  @include breakpoint(tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @include breakpoint(mobile) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

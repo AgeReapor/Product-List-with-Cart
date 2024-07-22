@@ -1,15 +1,27 @@
-import menu from "../assets/json/data.json";
+import "./Menu.scss";
 import type { JSONItem } from "../utils/types";
 import MenuItem from "./MenuItem";
 
-export default function Menu() {
-  const menuItems: JSONItem[] = menu;
+type MenuProps = {
+  updateOrderCountCallbackFunction: (name: string) => (count: number) => void;
+  listOfMenuItems: JSONItem[];
+};
 
+export default function Menu({
+  updateOrderCountCallbackFunction,
+  listOfMenuItems,
+}: MenuProps) {
   return (
-    <div className="menu">
-      {menuItems.map((menuItem) => (
-        <MenuItem key={menuItem.name} menuItem={menuItem} count={0} />
-      ))}
-    </div>
+    <>
+      <div className="menu">
+        {listOfMenuItems.map((menuItem) => (
+          <MenuItem
+            key={menuItem.name}
+            menuItem={menuItem}
+            updateOrderCount={updateOrderCountCallbackFunction(menuItem.name)}
+          />
+        ))}
+      </div>
+    </>
   );
 }

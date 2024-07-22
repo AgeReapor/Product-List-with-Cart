@@ -1,5 +1,14 @@
 @use "../globals.scss" as *;
 
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
 .menu-image {
   .tablet,
   .mobile {
@@ -11,7 +20,8 @@
   }
 
   @include breakpoint(tablet) {
-    .desktop {
+    .desktop,
+    .mobile {
       display: none;
     }
     .tablet {
@@ -28,4 +38,8 @@
       display: block;
     }
   }
+}
+
+img {
+  width: 100%;
 }
