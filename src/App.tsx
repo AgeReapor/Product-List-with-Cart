@@ -26,10 +26,15 @@ function App() {
     <>
       <main>
         <Menu
+          orderTracking={orderTracking}
           updateOrderCountCallbackFunction={updateOrderCountCallbackFunction}
           listOfMenuItems={listOfMenuItems}
         />
-        <Cart orderTracking={orderTracking} listOfMenuItems={listOfMenuItems} />
+        <Cart
+          orderTracking={orderTracking}
+          listOfMenuItems={listOfMenuItems}
+          updateOrderCountCallbackFunction={updateOrderCountCallbackFunction}
+        />
       </main>
       <Footer />
     </>

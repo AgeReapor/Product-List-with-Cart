@@ -2,42 +2,43 @@ import "./MenuItem.scss";
 import imageImport from "../utils/imageImport";
 import type { JSONItem } from "../utils/types";
 import AddToCart from "./AddToCart";
-import { useEffect, useState } from "react";
 
 type MenuItemProps = {
+  orderTracking: Record<string, number>;
   menuItem: JSONItem;
   updateOrderCount: (count: number) => void;
 };
 
 export default function MenuItem({
+  orderTracking,
   menuItem,
   updateOrderCount,
 }: MenuItemProps) {
   const { image, name, category, price } = menuItem;
   const { mobile, tablet, desktop } = image;
 
-  const [orderCount, setOrderCount] = useState(0);
-
-  useEffect(() => {
-    updateOrderCount(orderCount);
-  }, [orderCount]);
+  function getCurrentOrderCount() {
+    return orderTracking[menuItem.name];
+  }
 
   function onAddToCart() {
-    setOrderCount(1);
+    updateOrderCount(1);
   }
 
   function incrementOrderCount() {
-    setOrderCount(orderCount + 1);
+    const currentOrderCount = getCurrentOrderCount();
+    if (currentOrderCount) updateOrderCount(getCurrentOrderCount() + 1);
+    else onAddToCart();
   }
 
   function decrementOrderCount() {
-    var newOrderCount = orderCount - 1;
+    var newOrderCount = getCurrentOrderCount() - 1;
     if (newOrderCount < 0) newOrderCount = 0;
-    setOrderCount(newOrderCount);
+    updateOrderCount(newOrderCount);
   }
 
   function clearOrderCount() {
-    setOrderCount(0);
+    updateOrderCount(0);
   }
 
   return (
@@ -48,7 +49,7 @@ export default function MenuItem({
         <img className="mobile" src={imageImport(mobile)} alt={name} />
 
         <AddToCart
-          orderCount={orderCount}
+          orderCount={getCurrentOrderCount()}
           onAddToCart={onAddToCart}
           incrementOrderCount={incrementOrderCount}
           decrementOrderCount={decrementOrderCount}
@@ -64,3 +65,5 @@ export default function MenuItem({
     </div>
   );
 }
+
+// TODO: Hook up menu item to live values using orderCount
