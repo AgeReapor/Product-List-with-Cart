@@ -11,12 +11,26 @@
   width: max-content;
   height: max-content;
   border-radius: 5rem;
-  border: 1px solid $red;
+
+  border: 1px solid $rose-500;
 
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.menu-button-container.ordered {
+  background-color: $red;
+  border: 1px solid transparent !important;
+}
+
+.menu-button-container:not(.ordered):hover {
+  color: $red;
+  border: 2px solid $red;
+  .cart-text {
+    color: $red;
+  }
 }
 
 button {

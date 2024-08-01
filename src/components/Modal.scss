@@ -1,0 +1,175 @@
+@use "../globals.scss" as *;
+
+.modal:not(.active) {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint(mobile) {
+    display: static;
+  }
+}
+
+.modal-content {
+  background-color: $white;
+  margin: 15% auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 40%;
+
+  @include breakpoint(mobile) {
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    bottom: 0;
+    margin: 0;
+    margin-top: auto;
+    overflow: scroll;
+  }
+}
+
+.modal-cart-items {
+  max-height: 40vh;
+  overflow-y: scroll;
+}
+
+.modal-content .check-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-content h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: $bold;
+  line-height: 2rem;
+  color: $rose-900;
+}
+
+.modal-content p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: $rose-500;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+
+  background-color: $rose-50;
+  padding: 1rem;
+  padding-top: 0;
+  border-radius: 0.5rem;
+}
+
+.modal-cart-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-cart-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.6rem;
+  padding-left: 0;
+
+  .thumbnail {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .modal-cart-item-total-price {
+    margin-left: auto;
+  }
+
+  .modal-cart-item-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+
+    span {
+      font-weight: $semibold;
+      color: $red;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      color: $rose-400;
+      font-weight: $semibold;
+    }
+  }
+
+  .modal-cart-item-name {
+    font-weight: $semibold;
+    color: $rose-900;
+    margin: 0;
+  }
+  .modal-cart-item-total-price {
+    color: $rose-900;
+    font-weight: $semibold;
+    font-size: 0.8rem;
+  }
+}
+
+.modal-cart-item:not(:last-child) {
+  border-bottom: 1px solid $rose-100;
+}
+
+.modal-cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.8rem;
+  border-top: 1px solid $rose-100;
+
+  p {
+    margin: 0;
+    color: $rose-900;
+  }
+
+  span {
+    font-size: 1.5rem;
+    font-weight: $bold;
+    color: $rose-900;
+  }
+}
+
+.start-new-order-btn {
+  background-color: $red;
+  color: $white;
+  padding: 0.8rem;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: 10rem;
+  font-size: 1rem;
+  font-weight: $semibold;
+  width: 100%;
+}
+
+.start-new-order-btn:hover {
+  cursor: pointer;
+  filter: saturate(0.7);
+}

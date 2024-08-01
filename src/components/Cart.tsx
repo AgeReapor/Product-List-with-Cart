@@ -7,12 +7,15 @@ type CartProps = {
   orderTracking: Record<string, number>;
   listOfMenuItems: JSONItem[];
   updateOrderCountCallbackFunction: (name: string) => (count: number) => void;
+
+  submitOrder: () => void;
 };
 
 export default function Cart({
   orderTracking,
   listOfMenuItems,
   updateOrderCountCallbackFunction,
+  submitOrder,
 }: CartProps) {
   const listOfMenuItemNames = listOfMenuItems.map((menuItem) => menuItem.name);
   const listOfMenuPrices = listOfMenuItems.map((menuItem) => menuItem.price);
@@ -70,7 +73,9 @@ export default function Cart({
           This is a <span>carbon-neutral</span> delivery
         </p>
       </div>
-      <button className="checkout-button">Confirm Order</button>
+      <button className="checkout-button" onClick={submitOrder}>
+        Confirm Order
+      </button>
       <div className="empty-notice">
         <img src={emptyNoticeSvg} alt=""></img>
         <p>Your added items will appear here</p>

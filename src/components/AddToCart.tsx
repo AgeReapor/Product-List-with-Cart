@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./AddToCart.scss";
 
 type AddToCartProps = {
@@ -6,7 +7,6 @@ type AddToCartProps = {
   incrementOrderCount: () => void;
   decrementOrderCount: () => void;
   clearOrderCount: () => void;
-  toggleOrdered: boolean;
 };
 
 export default function AddToCart({
@@ -15,20 +15,26 @@ export default function AddToCart({
   incrementOrderCount,
   decrementOrderCount,
   clearOrderCount,
-  toggleOrdered,
 }: AddToCartProps) {
   const incrementSvg = "../assets/images/icon-increment-quantity.svg";
   const decrementSvg = "../assets/images/icon-decrement-quantity.svg";
+  const [toggleOrdered, setoggleOrdered] = useState(false);
+
+  useEffect(() => {
+    setoggleOrdered(orderCount > 0);
+  }, [orderCount]);
 
   return (
-    <div className="menu-button-container">
+    <div
+      className={"menu-button-container" + (toggleOrdered ? " ordered" : "")}
+    >
       <button className="add-to-cart" onClick={onAddToCart}>
         <img
           className="cart-icon"
           src="../assets/images/icon-add-to-cart.svg"
           alt="+"
         ></img>
-        Add to Cart
+        <span className="cart-text">Add to Cart</span>
       </button>
       <div className="spinbox" style={toggleOrdered ? {} : { display: "none" }}>
         <button className="order-increment" onClick={incrementOrderCount}>

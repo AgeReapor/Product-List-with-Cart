@@ -67,7 +67,6 @@ export default function MenuItem({
           incrementOrderCount={incrementOrderCount}
           decrementOrderCount={decrementOrderCount}
           clearOrderCount={clearOrderCount}
-          toggleOrdered={toggleOrdered}
         />
       </div>
 

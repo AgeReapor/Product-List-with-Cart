@@ -4,6 +4,7 @@ import type { JSONItem } from "./utils/types";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
+import Modal from "./components/Modal";
 import { useState } from "react";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [orderTracking, setOrderTracking] = useState<Record<string, number>>(
     {}
   );
+  const [modalToggle, setModalToggle] = useState(false);
 
   function updateOrderCountCallbackFunction(name: string) {
     return (count: number) => {
@@ -20,6 +22,14 @@ function App() {
 
       setOrderTracking({ ...orderTracking, ...newRecord });
     };
+  }
+
+  function resetOrders() {
+    setOrderTracking({});
+  }
+
+  function submitOrder() {
+    setModalToggle(true);
   }
 
   return (
@@ -34,8 +44,16 @@ function App() {
           orderTracking={orderTracking}
           listOfMenuItems={listOfMenuItems}
           updateOrderCountCallbackFunction={updateOrderCountCallbackFunction}
+          submitOrder={submitOrder}
         />
       </main>
+      <Modal
+        orderTracking={orderTracking}
+        listOfMenuItems={listOfMenuItems}
+        resetOrders={resetOrders}
+        modalToggle={modalToggle}
+        setModalToggle={setModalToggle}
+      />
       <Footer />
     </>
   );
