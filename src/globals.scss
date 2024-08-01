@@ -1,5 +1,10 @@
-$mobile-breakpoint: 600px;
-$tablet-breakpoint: 1024px;
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("./assets/fonts/RedHatText-VariableFont_wght.ttf") format("truetype");
+}
+
+$mobile-breakpoint: 800px;
+$tablet-breakpoint: 1200px;
 $desktop-breakpoint: 1440px;
 
 @mixin breakpoint($size) {
@@ -20,6 +25,7 @@ $desktop-breakpoint: 1440px;
 
 $red: hsl(14, 86%, 42%);
 $green: hsl(159, 69%, 38%);
+$white: hsl(0, 0%, 100%);
 
 $rose-50: hsl(20, 50%, 98%);
 $rose-100: hsl(13, 31%, 94%);
@@ -27,3 +33,10 @@ $rose-300: hsl(14, 25%, 72%);
 $rose-400: hsl(7, 20%, 60%);
 $rose-500: hsl(12, 20%, 44%);
 $rose-900: hsl(14, 65%, 9%);
+
+$font-size: 16px;
+
+$font-family: "Red Hat Text", sans-serif;
+$regular: 400;
+$semibold: 600;
+$bold: 700;

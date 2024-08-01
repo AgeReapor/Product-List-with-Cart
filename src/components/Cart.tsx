@@ -21,6 +21,9 @@ export default function Cart({
   );
 
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [isEmpty, setIsEmpty] = useState(true);
+  const carbonNeutralSvg = "../assets/images/icon-carbon-neutral.svg";
+  const emptyNoticeSvg = "../assets/images/illustration-empty-cart.svg";
 
   function getOrderCost(name: string) {
     return listOfMenuPrices[listOfMenuItemNames.indexOf(name)];
@@ -38,6 +41,7 @@ export default function Cart({
 
   useEffect(() => {
     var newItemCount = 0;
+    setIsEmpty(listOfActiveOrders.length === 0);
     listOfActiveOrders.map((name) => {
       newItemCount += orderTracking[name];
     });
@@ -45,7 +49,7 @@ export default function Cart({
   }, [orderTracking]);
 
   return (
-    <div className="cart">
+    <div className={"cart" + (isEmpty ? " empty" : "")}>
       <h2>Your Cart({cartItemCount})</h2>
       {listOfActiveOrders.map((name) => (
         <CartItem
@@ -56,9 +60,20 @@ export default function Cart({
           updateOrderCount={updateOrderCountCallbackFunction(name)}
         />
       ))}
-      <div className="total">
+      <div className="order-total">
         <p>Order Total</p>
         <span className="total-price">${getTotalOrderCost().toFixed(2)} </span>
+      </div>
+      <div className="delivery-details">
+        <img src={carbonNeutralSvg} alt=""></img>
+        <p>
+          This is a <span>carbon-neutral</span> delivery
+        </p>
+      </div>
+      <button className="checkout-button">Confirm Order</button>
+      <div className="empty-notice">
+        <img src={emptyNoticeSvg} alt=""></img>
+        <p>Your added items will appear here</p>
       </div>
     </div>
   );

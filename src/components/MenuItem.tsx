@@ -2,6 +2,7 @@ import "./MenuItem.scss";
 import imageImport from "../utils/imageImport";
 import type { JSONItem } from "../utils/types";
 import AddToCart from "./AddToCart";
+import { useEffect, useState } from "react";
 
 type MenuItemProps = {
   orderTracking: Record<string, number>;
@@ -17,9 +18,17 @@ export default function MenuItem({
   const { image, name, category, price } = menuItem;
   const { mobile, tablet, desktop } = image;
 
+  const [toggleOrdered, setToggleOrdered] = useState(false);
+
   function getCurrentOrderCount() {
+    if (!orderTracking[menuItem.name]) return 0;
     return orderTracking[menuItem.name];
   }
+
+  useEffect(() => {
+    if (getCurrentOrderCount() > 0) setToggleOrdered(true);
+    else setToggleOrdered(false);
+  }, [orderTracking]);
 
   function onAddToCart() {
     updateOrderCount(1);
@@ -43,10 +52,14 @@ export default function MenuItem({
 
   return (
     <div className="menu-item">
-      <div className="menu-image">
-        <img className="desktop" src={imageImport(desktop)} alt={name} />
-        <img className="tablet" src={imageImport(tablet)} alt={name} />
-        <img className="mobile" src={imageImport(mobile)} alt={name} />
+      <div className={"image-container border-" + toggleOrdered}>
+        <img
+          className="menu-img desktop"
+          src={imageImport(desktop)}
+          alt={name}
+        />
+        <img className="menu-img tablet" src={imageImport(tablet)} alt={name} />
+        <img className="menu-img mobile" src={imageImport(mobile)} alt={name} />
 
         <AddToCart
           orderCount={getCurrentOrderCount()}
@@ -54,13 +67,14 @@ export default function MenuItem({
           incrementOrderCount={incrementOrderCount}
           decrementOrderCount={decrementOrderCount}
           clearOrderCount={clearOrderCount}
+          toggleOrdered={toggleOrdered}
         />
       </div>
 
       <div className="menu-details">
         <span className="category">{category}</span>
         <h3 className="name">{name}</h3>
-        <span className="price">${price}</span>
+        <span className="price">${price.toFixed(2)}</span>
       </div>
     </div>
   );

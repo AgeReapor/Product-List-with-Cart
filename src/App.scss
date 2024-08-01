@@ -1,10 +1,28 @@
+@use "./globals.scss" as *;
+
 #root {
   display: flex;
   flex-direction: column;
+  background-color: $rose-50;
+
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $regular;
 }
 
 main {
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-gap: 1.5rem;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2rem;
+  margin: 64px 128px;
+
+  @include breakpoint(tablet) {
+    grid-template-columns: 2fr 1fr;
+    margin: 50px 50px;
+  }
+
+  @include breakpoint(mobile) {
+    grid-template-columns: 1fr;
+    margin: 20px 30px;
+  }
 }

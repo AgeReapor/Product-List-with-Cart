@@ -1,0 +1,173 @@
+@use "../globals.scss" as *;
+
+.cart {
+  background-color: $white;
+  padding: 1.5rem;
+  padding-top: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+}
+
+.cart h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: $red;
+  margin-bottom: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $rose-100;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cart-order {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.cart-order .name {
+  font-size: 1rem;
+  font-weight: $semibold;
+  color: $rose-900;
+  margin: 0;
+}
+
+.cart-details {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+}
+.cart-details .order-count {
+  font-weight: $semibold;
+  color: $red;
+  width: 30px;
+}
+
+.cart-details .price {
+  font-weight: $regular;
+  color: $rose-500;
+}
+
+.cart-details .total {
+  font-weight: $semibold;
+  color: $rose-500;
+}
+
+.clear-cart-order {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  color: $rose-500;
+  background-color: $white;
+  border: 2px solid $rose-300;
+}
+
+.clear-cart-order:hover {
+  border-color: $rose-900;
+
+  img {
+    filter: invert(1);
+  }
+}
+
+.cart.empty {
+  .order-total {
+    display: none;
+  }
+  .delivery-details {
+    display: none;
+  }
+  .checkout-button {
+    display: none;
+  }
+}
+
+.cart:not(.empty) {
+  .empty-notice {
+    display: none;
+  }
+}
+
+.cart .order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.order-total p {
+  margin: 0;
+}
+
+.order-total .total-price {
+  font-weight: $bold;
+  font-size: 1.8rem;
+  color: $rose-900;
+}
+
+.delivery-details {
+  background-color: $rose-50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+}
+
+.delivery-details p {
+  margin: 0;
+  margin-left: 8px;
+  text-wrap: balance;
+
+  span {
+    font-weight: $semibold;
+  }
+}
+
+.checkout-button {
+  margin-top: 1.5rem;
+  width: 100%;
+
+  background-color: $red;
+  color: $white;
+  border: none;
+  border-radius: 10rem;
+  padding: 1rem;
+}
+
+.checkout-button:hover {
+  cursor: pointer;
+  filter: saturate(0.6);
+}
+
+.empty-notice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: $rose-400;
+    font-weight: $semibold;
+  }
+}

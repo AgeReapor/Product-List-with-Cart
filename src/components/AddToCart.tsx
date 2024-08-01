@@ -1,9 +1,12 @@
+import "./AddToCart.scss";
+
 type AddToCartProps = {
   orderCount: number;
   onAddToCart: () => void;
   incrementOrderCount: () => void;
   decrementOrderCount: () => void;
   clearOrderCount: () => void;
+  toggleOrdered: boolean;
 };
 
 export default function AddToCart({
@@ -12,22 +15,41 @@ export default function AddToCart({
   incrementOrderCount,
   decrementOrderCount,
   clearOrderCount,
+  toggleOrdered,
 }: AddToCartProps) {
+  const incrementSvg = "../assets/images/icon-increment-quantity.svg";
+  const decrementSvg = "../assets/images/icon-decrement-quantity.svg";
+
   return (
-    <>
+    <div className="menu-button-container">
       <button className="add-to-cart" onClick={onAddToCart}>
+        <img
+          className="cart-icon"
+          src="../assets/images/icon-add-to-cart.svg"
+          alt="+"
+        ></img>
         Add to Cart
       </button>
-      <button className="order-increment" onClick={incrementOrderCount}>
-        +
-      </button>
-      <span className="order-count">{orderCount}</span>
-      <button className="order-decrement" onClick={decrementOrderCount}>
-        -
-      </button>
+      <div className="spinbox" style={toggleOrdered ? {} : { display: "none" }}>
+        <button className="order-increment" onClick={incrementOrderCount}>
+          <img
+            className="spinbox-icon increment"
+            src={incrementSvg}
+            alt="+"
+          ></img>
+        </button>
+        <span className="order-count">{orderCount}</span>
+        <button className="order-decrement" onClick={decrementOrderCount}>
+          <img
+            className="spinbox-icon decrement"
+            src={decrementSvg}
+            alt="-"
+          ></img>
+        </button>
+      </div>
       <button className="clear-order" onClick={clearOrderCount}>
         Clear
       </button>
-    </>
+    </div>
   );
 }

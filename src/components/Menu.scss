@@ -12,3 +12,12 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.menu h2 {
+  color: $rose-900;
+  font-size: 2.5rem;
+  font-weight: $bold;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 2rem;
+}
